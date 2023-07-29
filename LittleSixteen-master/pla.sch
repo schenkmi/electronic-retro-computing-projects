@@ -1,0 +1,574 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 10 11
+Title "LittleSixteen"
+Date "2020-10-04"
+Rev "1git"
+Comp "SukkoPera"
+Comment1 "Licensed under CERN OHL v.1.2"
+Comment2 "WARNING: These schematics might contain errors!"
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L 74xx:74LS175 U15
+U 1 1 5EE7EA9B
+P 5945 2515
+F 0 "U15" H 6160 3065 50  0000 C CNN
+F 1 "74LS175" H 6215 1860 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket_LongPads" H 5945 2515 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS175" H 5945 2515 50  0001 C CNN
+	1    5945 2515
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5445 2115 5125 2115
+Wire Wire Line
+	5445 2315 5125 2315
+Wire Wire Line
+	5445 2515 5125 2515
+Wire Wire Line
+	5445 2715 5125 2715
+Wire Wire Line
+	5445 3015 5125 3015
+Entry Wire Line
+	5025 2015 5125 2115
+Entry Wire Line
+	5025 2215 5125 2315
+Entry Wire Line
+	5025 2415 5125 2515
+Entry Wire Line
+	5025 2615 5125 2715
+Wire Bus Line
+	5025 2015 4770 2015
+Text GLabel 4770 2015 0    50   Input ~ 0
+a[0..15]
+Text Label 5180 2115 0    50   ~ 0
+a0
+Text Label 5180 2315 0    50   ~ 0
+a2
+Text Label 5180 2515 0    50   ~ 0
+a3
+Text Label 5180 2715 0    50   ~ 0
+a1
+Wire Wire Line
+	4740 2915 5445 2915
+$Comp
+L 74xx:74LS02 U12
+U 1 1 5EE7B8FB
+P 4440 2915
+F 0 "U12" H 4440 2598 50  0000 C CNN
+F 1 "74LS02" H 4440 2689 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm_Socket_LongPads" H 4440 2915 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74ls02" H 4440 2915 50  0001 C CNN
+	1    4440 2915
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4140 3015 3885 3015
+Text GLabel 3885 3015 0    50   Input ~ 0
+R_~W
+$Comp
+L power:GND #PWR0168
+U 1 1 5EE9C415
+P 5945 3415
+F 0 "#PWR0168" H 5945 3165 50  0001 C CNN
+F 1 "GND" H 5950 3242 50  0000 C CNN
+F 2 "" H 5945 3415 50  0001 C CNN
+F 3 "" H 5945 3415 50  0001 C CNN
+	1    5945 3415
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5945 3415 5945 3315
+$Comp
+L power:VCC #PWR0169
+U 1 1 5EE9D033
+P 5945 1705
+F 0 "#PWR0169" H 5945 1555 50  0001 C CNN
+F 1 "VCC" H 5962 1878 50  0000 C CNN
+F 2 "" H 5945 1705 50  0001 C CNN
+F 3 "" H 5945 1705 50  0001 C CNN
+	1    5945 1705
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5945 1705 5945 1815
+Text GLabel 5125 3015 0    50   Input ~ 0
+~RESET
+$Comp
+L 74xx:74LS139 U14
+U 1 1 5EE9F177
+P 7895 2215
+F 0 "U14" H 7895 2582 50  0000 C CNN
+F 1 "74LS139" H 7895 2491 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket_LongPads" H 7895 2215 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS139" H 7895 2215 50  0001 C CNN
+	1    7895 2215
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74LS139 U14
+U 2 1 5EEA00AA
+P 9430 3080
+F 0 "U14" H 9430 3447 50  0000 C CNN
+F 1 "74LS139" H 9430 3356 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket_LongPads" H 9430 3080 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS139" H 9430 3080 50  0001 C CNN
+	2    9430 3080
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74LS139 U14
+U 3 1 5EEA114E
+P 5630 6775
+F 0 "U14" H 5860 6821 50  0000 L CNN
+F 1 "74LS139" H 5860 6730 50  0000 L CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket_LongPads" H 5630 6775 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS139" H 5630 6775 50  0001 C CNN
+	3    5630 6775
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6620 2115 6620 2215
+Wire Wire Line
+	6620 2215 7395 2215
+Wire Wire Line
+	6445 2115 6620 2115
+Wire Wire Line
+	6720 2715 6720 2115
+Wire Wire Line
+	6720 2115 7395 2115
+Wire Wire Line
+	6445 2715 6720 2715
+$Comp
+L Device:C C28
+U 1 1 5EEA5EFC
+P 6355 6770
+F 0 "C28" H 6470 6816 50  0000 L CNN
+F 1 "100n" H 6470 6725 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D8.0mm_W2.5mm_P5.00mm" H 6393 6620 50  0001 C CNN
+F 3 "~" H 6355 6770 50  0001 C CNN
+	1    6355 6770
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5630 6275 5630 6160
+Wire Wire Line
+	5630 6160 5985 6160
+Wire Wire Line
+	6355 6160 6355 6620
+Wire Wire Line
+	6355 6920 6355 7420
+Wire Wire Line
+	6355 7420 5985 7420
+Wire Wire Line
+	5630 7420 5630 7275
+$Comp
+L power:GND #PWR0170
+U 1 1 5EEA911C
+P 5985 7520
+F 0 "#PWR0170" H 5985 7270 50  0001 C CNN
+F 1 "GND" H 5990 7347 50  0000 C CNN
+F 2 "" H 5985 7520 50  0001 C CNN
+F 3 "" H 5985 7520 50  0001 C CNN
+	1    5985 7520
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5985 7520 5985 7420
+Connection ~ 5985 7420
+Wire Wire Line
+	5985 7420 5630 7420
+$Comp
+L power:VCC #PWR0171
+U 1 1 5EEAA156
+P 5985 6050
+F 0 "#PWR0171" H 5985 5900 50  0001 C CNN
+F 1 "VCC" H 6002 6223 50  0000 C CNN
+F 2 "" H 5985 6050 50  0001 C CNN
+F 3 "" H 5985 6050 50  0001 C CNN
+	1    5985 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5985 6050 5985 6160
+Connection ~ 5985 6160
+Wire Wire Line
+	5985 6160 6355 6160
+NoConn ~ 8395 2215
+Wire Wire Line
+	8395 2115 8665 2115
+Wire Wire Line
+	8395 2315 8665 2315
+Wire Wire Line
+	8395 2415 8665 2415
+Text GLabel 8665 2115 2    50   Output ~ 0
+~BASIC_CS1
+Text GLabel 8665 2315 2    50   Output ~ 0
+C1_LOW
+Text GLabel 8665 2415 2    50   Output ~ 0
+C2_LOW
+$Comp
+L 74xx:74LS02 U12
+U 2 1 5EEBA2EA
+P 7885 2980
+F 0 "U12" H 7885 3305 50  0000 C CNN
+F 1 "74LS02" H 7885 3214 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm_Socket_LongPads" H 7885 2980 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74ls02" H 7885 2980 50  0001 C CNN
+	2    7885 2980
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7395 2415 7245 2415
+Text GLabel 7245 2415 0    50   Input ~ 0
+~CS0
+Wire Wire Line
+	6830 2415 6830 2880
+Wire Wire Line
+	6830 2880 7585 2880
+Wire Wire Line
+	6445 2415 6830 2415
+$Comp
+L 74xx:74LS02 U12
+U 3 1 5EEC5F05
+P 7885 3680
+F 0 "U12" H 7885 4005 50  0000 C CNN
+F 1 "74LS02" H 7885 3914 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm_Socket_LongPads" H 7885 3680 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74ls02" H 7885 3680 50  0001 C CNN
+	3    7885 3680
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7585 3080 6830 3080
+Wire Wire Line
+	6830 3080 6830 3780
+Wire Wire Line
+	6830 3780 7585 3780
+Wire Wire Line
+	6620 2615 6620 3580
+Wire Wire Line
+	6620 3580 7585 3580
+Wire Wire Line
+	6445 2615 6620 2615
+NoConn ~ 6445 2815
+NoConn ~ 6445 2515
+NoConn ~ 6445 2215
+NoConn ~ 6445 2315
+Wire Wire Line
+	8185 2980 8270 2980
+Wire Wire Line
+	8270 2980 8270 3080
+Wire Wire Line
+	8270 3080 8930 3080
+Wire Wire Line
+	8930 2980 8375 2980
+Wire Wire Line
+	8375 2980 8375 3680
+Wire Wire Line
+	8375 3680 8185 3680
+Wire Wire Line
+	8930 3280 8780 3280
+Text GLabel 8780 3280 0    50   Input ~ 0
+~CS1
+Wire Wire Line
+	9930 2980 10200 2980
+Wire Wire Line
+	9930 3180 10200 3180
+Wire Wire Line
+	9930 3280 10200 3280
+Text GLabel 10200 2980 2    50   Output ~ 0
+~KERNAL_CS1
+Text GLabel 10200 3180 2    50   Output ~ 0
+C1_HIGH
+Text GLabel 10200 3280 2    50   Output ~ 0
+C2_HIGH
+NoConn ~ 9930 3080
+$Comp
+L 74xx:74LS02 U12
+U 5 1 5EEE272F
+P 4605 6775
+F 0 "U12" H 4835 6821 50  0000 L CNN
+F 1 "74LS02" H 4835 6730 50  0000 L CNN
+F 2 "Package_DIP:DIP-14_W7.62mm_Socket_LongPads" H 4605 6775 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74ls02" H 4605 6775 50  0001 C CNN
+	5    4605 6775
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0172
+U 1 1 5EEF3F68
+P 4605 7375
+F 0 "#PWR0172" H 4605 7125 50  0001 C CNN
+F 1 "GND" H 4610 7202 50  0000 C CNN
+F 2 "" H 4605 7375 50  0001 C CNN
+F 3 "" H 4605 7375 50  0001 C CNN
+	1    4605 7375
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4605 7375 4605 7275
+$Comp
+L power:VCC #PWR0173
+U 1 1 5EEF54D6
+P 4605 6165
+F 0 "#PWR0173" H 4605 6015 50  0001 C CNN
+F 1 "VCC" H 4622 6338 50  0000 C CNN
+F 2 "" H 4605 6165 50  0001 C CNN
+F 3 "" H 4605 6165 50  0001 C CNN
+	1    4605 6165
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4605 6165 4605 6275
+$Comp
+L MOS_251641_PLA:MOS_251641_PLA U16
+U 2 1 5DE9421D
+P 3005 6775
+F 0 "U16" H 2777 6821 50  0000 R CNN
+F 1 "MOS_251641_PLA" H 2777 6730 50  0000 R CNN
+F 2 "Package_DIP:DIP-28_W15.24mm_Socket_LongPads" H 3005 6775 50  0001 C CNN
+F 3 "DOCUMENTATION" H 3005 6775 50  0001 C CNN
+	2    3005 6775
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C30
+U 1 1 5DEA08DA
+P 3730 6770
+F 0 "C30" H 3845 6816 50  0000 L CNN
+F 1 "100n" H 3845 6725 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D8.0mm_W2.5mm_P5.00mm" H 3768 6620 50  0001 C CNN
+F 3 "~" H 3730 6770 50  0001 C CNN
+	1    3730 6770
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3005 6275 3005 6160
+Wire Wire Line
+	3005 6160 3360 6160
+Wire Wire Line
+	3730 6160 3730 6620
+Wire Wire Line
+	3730 6920 3730 7420
+Wire Wire Line
+	3730 7420 3360 7420
+Wire Wire Line
+	3005 7420 3005 7275
+$Comp
+L power:GND #PWR0174
+U 1 1 5DEA08EA
+P 3360 7520
+F 0 "#PWR0174" H 3360 7270 50  0001 C CNN
+F 1 "GND" H 3365 7347 50  0000 C CNN
+F 2 "" H 3360 7520 50  0001 C CNN
+F 3 "" H 3360 7520 50  0001 C CNN
+	1    3360 7520
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3360 7520 3360 7420
+Connection ~ 3360 7420
+Wire Wire Line
+	3360 7420 3005 7420
+$Comp
+L power:VCC #PWR0175
+U 1 1 5DEA08F7
+P 3360 6050
+F 0 "#PWR0175" H 3360 5900 50  0001 C CNN
+F 1 "VCC" H 3377 6223 50  0000 C CNN
+F 2 "" H 3360 6050 50  0001 C CNN
+F 3 "" H 3360 6050 50  0001 C CNN
+	1    3360 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3360 6050 3360 6160
+Connection ~ 3360 6160
+Wire Wire Line
+	3360 6160 3730 6160
+Text GLabel 1465 3665 0    50   Input ~ 0
+MUX
+Text GLabel 1240 3565 0    50   Input ~ 0
+~RAS
+Wire Wire Line
+	1925 3565 1240 3565
+Wire Wire Line
+	1925 3665 1465 3665
+$Comp
+L power:GND #PWR0176
+U 1 1 5DF08B63
+P 1815 3985
+F 0 "#PWR0176" H 1815 3735 50  0001 C CNN
+F 1 "GND" H 1820 3812 50  0000 C CNN
+F 2 "" H 1815 3985 50  0001 C CNN
+F 3 "" H 1815 3985 50  0001 C CNN
+	1    1815 3985
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1815 3865 1815 3985
+Wire Wire Line
+	1925 3865 1815 3865
+Text GLabel 1240 1955 0    50   Input ~ 0
+PHI0
+Wire Wire Line
+	1700 2065 1925 2065
+Wire Wire Line
+	1700 1955 1240 1955
+Wire Wire Line
+	1700 2065 1700 1955
+Wire Wire Line
+	1925 1965 1810 1965
+Text Label 1695 3315 0    50   ~ 0
+a8
+Text Label 1695 3215 0    50   ~ 0
+a9
+Text Label 1695 3115 0    50   ~ 0
+a15
+Text Label 1695 3015 0    50   ~ 0
+a4
+Text Label 1695 2915 0    50   ~ 0
+a5
+Text Label 1695 2815 0    50   ~ 0
+a6
+Text Label 1695 2715 0    50   ~ 0
+a7
+Text Label 1695 2615 0    50   ~ 0
+a12
+Text Label 1695 2515 0    50   ~ 0
+a14
+Text Label 1695 2415 0    50   ~ 0
+a13
+Text Label 1695 2315 0    50   ~ 0
+a11
+Text Label 1695 2215 0    50   ~ 0
+a10
+Text GLabel 1240 2115 0    50   Input ~ 0
+a[0..15]
+Wire Bus Line
+	1560 2115 1240 2115
+Entry Wire Line
+	1560 3215 1660 3315
+Entry Wire Line
+	1560 3115 1660 3215
+Entry Wire Line
+	1560 3015 1660 3115
+Entry Wire Line
+	1560 2915 1660 3015
+Entry Wire Line
+	1560 2815 1660 2915
+Entry Wire Line
+	1560 2715 1660 2815
+Entry Wire Line
+	1560 2615 1660 2715
+Entry Wire Line
+	1560 2515 1660 2615
+Entry Wire Line
+	1560 2415 1660 2515
+Entry Wire Line
+	1560 2315 1660 2415
+Entry Wire Line
+	1560 2215 1660 2315
+Entry Wire Line
+	1560 2115 1660 2215
+Wire Wire Line
+	1925 3315 1660 3315
+Wire Wire Line
+	1925 3215 1660 3215
+Wire Wire Line
+	1925 3115 1660 3115
+Wire Wire Line
+	1925 3015 1660 3015
+Wire Wire Line
+	1925 2915 1660 2915
+Wire Wire Line
+	1925 2815 1660 2815
+Wire Wire Line
+	1925 2715 1660 2715
+Wire Wire Line
+	1925 2615 1660 2615
+Wire Wire Line
+	1925 2515 1660 2515
+Wire Wire Line
+	1925 2415 1660 2415
+Wire Wire Line
+	1925 2315 1660 2315
+Wire Wire Line
+	1925 2215 1660 2215
+Wire Wire Line
+	1810 1530 1810 1965
+Wire Wire Line
+	3500 1530 1810 1530
+Wire Wire Line
+	3500 2915 3500 1530
+Wire Wire Line
+	3425 2915 3500 2915
+$Comp
+L MOS_251641_PLA:MOS_251641_PLA U16
+U 1 1 5DE932D8
+P 2675 2915
+F 0 "U16" H 2675 4130 50  0000 C CNN
+F 1 "MOS_251641_PLA" H 2675 4039 50  0000 C CNN
+F 2 "Package_DIP:DIP-28_W15.24mm_Socket_LongPads" H 2675 2915 50  0001 C CNN
+F 3 "DOCUMENTATION" H 2675 2915 50  0001 C CNN
+	1    2675 2915
+	1    0    0    -1  
+$EndComp
+Connection ~ 6830 3780
+Text Notes 4140 2890 2    50   ~ 0
+ADDR CLK\n$FDD0-$FDDF
+NoConn ~ 3425 2215
+NoConn ~ 3425 2515
+Text Notes 3525 2250 0    50   ~ 0
+SCS (?)
+Text Notes 3525 2550 0    50   ~ 0
+$FD00-$FD0F (ACIA CS on +4)
+Wire Wire Line
+	3425 2315 3630 2315
+Text GLabel 3630 2315 2    50   Output ~ 0
+PHI2
+Wire Wire Line
+	3425 2415 3855 2415
+Text GLabel 3855 2415 2    50   Output ~ 0
+CASSETTE
+Wire Wire Line
+	3665 2615 3665 2815
+Wire Wire Line
+	3665 2615 3425 2615
+Wire Wire Line
+	3580 3780 6830 3780
+Wire Wire Line
+	3425 2715 3750 2715
+Text GLabel 3855 2615 2    50   Output ~ 0
+KEYPORT_CS
+Wire Wire Line
+	3750 2715 3750 2615
+Wire Wire Line
+	3750 2615 3855 2615
+Text Notes 9705 2735 0    50   ~ 0
+This enables function\nROM HIGH on the +4
+Wire Notes Line
+	9930 2755 9930 3045
+Text Notes 8170 1870 0    50   ~ 0
+This enables function\nROM LOW on the +4
+Wire Notes Line
+	8395 1890 8395 2180
+Text Notes 3640 3780 0    50   ~ 0
+KERN $FC00-$FCFF
+Wire Wire Line
+	3665 2815 4140 2815
+Wire Wire Line
+	3425 2815 3580 2815
+Wire Wire Line
+	3580 2815 3580 3780
+Wire Bus Line
+	5025 2015 5025 2615
+Wire Bus Line
+	1560 2115 1560 3215
+$EndSCHEMATC

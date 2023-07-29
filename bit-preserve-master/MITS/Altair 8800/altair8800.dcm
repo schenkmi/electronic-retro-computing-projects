@@ -1,0 +1,59 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 8080
+D 8-bit N-channel Microprocessor
+K cpu, microprocessor
+F https://archive.org/download/8080Datasheet/8080%20Datasheet.pdf
+$ENDCMP
+#
+$CMP 8101
+D 1024-bit (256x4) static MOS RAM with separate I/O
+K memory
+F https://archive.org/details/bitsavers_inteldataBtalog_46775480/page/n443
+$ENDCMP
+#
+$CMP 8212
+D 8-Bit Input/Output Port
+K IO Port
+F https://ia801501.us.archive.org/33/items/NationalSemiconductorDP8212Datasheet/National%20Semiconductor%20DP8212%20Datasheet.PDF
+$ENDCMP
+#
+$CMP 8214
+D Priority Interrupt Control Unit
+F https://archive.org/details/bitsavers_intelMCS80ocomputerSystemsUsersManual197509_43049640/page/n221
+$ENDCMP
+#
+$CMP 8T97
+D High speed hex 3-state buffer
+K buffer tristate
+F https://archive.org/download/8T9598Datasheet/8T95-98%20datasheet.pdf
+$ENDCMP
+#
+$CMP 9310
+D Presettable decade counter
+K counter
+F https://archive.org/details/bitsavers_motoroladaTTLIntegratedCircuitsDataBook_38442857/page/n465
+$ENDCMP
+#
+$CMP 9316
+D Presettable 4-bit binary counter
+K counter
+F https://archive.org/details/bitsavers_motoroladaTTLIntegratedCircuitsDataBook_38442857/page/n475
+$ENDCMP
+#
+$CMP D_DIAG
+D Diode (at 45 degrees)
+K diode
+$ENDCMP
+#
+$CMP P-6138
+D Transformer, one primary, two secondaries (one center tapped)
+K transformer
+$ENDCMP
+#
+$CMP S100_CARD_EDGE
+D Card edge connector for S100 bus, functional blocks
+K S100
+$ENDCMP
+#
+#End Doc Library
