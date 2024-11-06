@@ -1,0 +1,18 @@
+[package]
+name = "picolink"
+version = "1.5.1"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1"
+num-traits = "0.2"
+num-derive = "0.4"
+
+
+[dependencies.serialport]
+git = "https://github.com/wickerwaka/serialport-rs.git"
+rev = "c14ea8611834c39390a02f0eec3efb51fc576712"
+default-features = false
+features = ["uevent-info"]
