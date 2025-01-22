@@ -1,0 +1,319 @@
+## This is a description file for a 6502-like CPU.
+## See https://github.com/mist64/c64ref for details.
+
+[info]
+manufacturer WDC
+name         65C02
+year         1983 ## https://en.wikipedia.org/wiki/WDC_65C02; or 1981? https://en.wikipedia.org/wiki/Talk%3AWDC_65C02
+id           65c02
+basedon      6502
+description  This is the CMOS-based reimplementation of the 6502 designed by Western Design Center, Inc. It supports all documented features of the original 6502, fixes all known quirks, adds 27 new opcodes and two addressing modes, and guarantees all undocumented opcodes to be NOPs. To distinguish it from derived versions, it is also sometimes called the 65SC02.
+
+[mnemos]
+BRA   Branch Always
+PHX   Push X Register
+PHY   Push Y Register
+PLX   Pull X Register
+PLY   Pull Y Register
+STZ   Store Zero
+TRB   Test and Reset Memory Bits
+TSB   Test and Set Memory Bits
+
+[operations]
+BRA  ctrl  --------  Branch Always
+PHX  stack --------  X↓
+PHY  stack --------  Y↑
+PLX  stack N-----Z-  X↑
+PLY  stack N-----Z-  Y↑
+STZ  load  --------  0 → M
+TRB  logic ------Z-  ~A ∧ M → M
+TSB  logic ------Z-  A ∨ M → M
+
+[addmodes]
+(a8)     2  ($nn)      Zero Page Indirect
+(a16,X)  3  ($nnnn,X)  Absolute X-Indexed Indirect
+
+[opcodes]
+04  TSB   a8
+0C  TSB   a16
+12  ORA   (a8)
+14  TRB   a8
+1A  INC   A
+1C  TRB   a16
+32  AND   (a8)
+34  BIT   a8,X
+3A  DEC   A
+3C  BIT   a16,X
+52  EOR   (a8)
+5A  PHY
+64  STZ   a8
+72  ADC   (a8)
+74  STZ   a8,X
+7A  PLY
+7C  JMP   (a16,X)
+80  BRA   r8
+89  BIT   #d8
+92  STA   (a8)
+9C  STZ   a16
+9E  STZ   a16,X
+B2  LDA   (a8)
+D2  CMP   (a8)
+DA  PHX
+F2  SBC   (a8)
+FA  PLX
+
+02  *NOP #d8
+03  *NOP
+07  *NOP
+0B  *NOP
+0F  *NOP
+13  *NOP
+17  *NOP
+1B  *NOP
+1F  *NOP
+22  *NOP #d8
+23  *NOP
+27  *NOP
+2B  *NOP
+2F  *NOP
+33  *NOP
+37  *NOP
+3B  *NOP
+3F  *NOP
+42  *NOP #d8
+43  *NOP
+44  *NOP #d8
+47  *NOP
+4B  *NOP
+4F  *NOP
+53  *NOP
+54  *NOP #d8
+57  *NOP
+5B  *NOP
+5C  *NOP
+5F  *NOP
+62  *NOP #d8
+63  *NOP
+67  *NOP
+6B  *NOP
+6F  *NOP
+73  *NOP
+77  *NOP
+7B  *NOP
+7F  *NOP
+82  *NOP #d8
+83  *NOP
+87  *NOP
+8B  *NOP
+8F  *NOP
+93  *NOP
+97  *NOP
+9B  *NOP
+9F  *NOP
+A3  *NOP
+A7  *NOP
+AB  *NOP
+AF  *NOP
+B3  *NOP
+B7  *NOP
+BB  *NOP
+BF  *NOP
+C2  *NOP #d8
+C3  *NOP
+C7  *NOP
+CB  *NOP
+CF  *NOP
+D3  *NOP
+D4  *NOP #d8
+D7  *NOP
+DB  *NOP
+DC  *NOP
+DF  *NOP
+E2  *NOP #d8
+E3  *NOP
+E7  *NOP
+EB  *NOP
+EF  *NOP
+F3  *NOP
+F4  *NOP #d8
+F7  *NOP
+FB  *NOP
+FC  *NOP
+FF  *NOP
+
+[timing]
+## updated timing
+6c  6 ## JMP () fixed, one cycle extra
+
+## ADC instructions add 1 cycle in decimal mode
+61  6+d
+65  3+d
+69  2+d
+6D  4+d
+71  5+p+d
+75  4+d
+79  4+p+d
+7D  4+p+d
+
+## SBC instructions add 1 cycle in decimal mode
+E1  6+d
+E5  3+d
+E9  2+d
+ED  4+d
+F1  5+p+d
+F5  4+d
+F9  4+p+d
+FD  4+p+d
+
+## new instructions
+04  5
+0C  6
+12  5
+14  5
+1A  2
+1C  6
+32  5
+34  3
+3A  2
+3C  4
+52  5
+5A  3
+64  3
+72  5+d
+74  4
+7A  4
+7C  6
+80  3+p
+89  3
+92  5
+9C  4
+9E  5
+B2  5
+D2  5
+DA  3
+F2  5+d
+FA  4
+
+## NOPs
+02  2
+03  1
+07  1
+0B  1
+0F  1
+13  1
+17  1
+1B  1
+1F  1
+22  2
+23  1
+27  1
+2B  1
+2F  1
+33  1
+37  1
+3B  1
+3F  1
+42  2
+43  1
+44  3
+47  1
+4B  1
+4F  1
+53  1
+54  4
+57  1
+5B  1
+5C  8
+5F  1
+62  2
+63  1
+67  1
+6B  1
+6F  1
+73  1
+77  1
+7B  1
+7F  1
+82  2
+83  1
+87  1
+8B  1
+8F  1
+93  1
+97  1
+9B  1
+9F  1
+A3  1
+A7  1
+AB  1
+AF  1
+B3  1
+B7  1
+BB  1
+BF  1
+C2  2
+C3  1
+C7  1
+CB  1
+CF  1
+D3  1
+D4  4
+D7  1
+DB  1
+DC  4
+DF  1
+E2  2
+E3  1
+E7  1
+EB  1
+EF  1
+F3  1
+F4  4
+F7  1
+FB  1
+FC  4
+FF  1
+
+[documentation-mnemos]
+## based on the 6502 docs
+BRA  Branch Always
+     This instruction takes an unconditional branch.
+     BRA does not affect any of the flags or any other part of the machine other than the program counter.
+
+PHX  Push Index Register X On Stack
+     This instruction transfers the current value of the index register X to the next location on the stack, automatically decrementing the stack to point to the next empty location.
+     The Push X instruction only affects the stack pointer register which is decremented by 1 as a result of the operation. It affects no flags.
+
+PHY  Push Index Register Y On Stack
+     This instruction transfers the current value of the index register Y to the next location on the stack, automatically decrementing the stack to point to the next empty location.
+     The Push Y instruction only affects the stack pointer register which is decremented by 1 as a result of the operation. It affects no flags.
+
+PLX  Pull Index Register X From Stack
+     This instruction adds 1 to the current value of the stack pointer and uses it to address the stack and loads the contents of the stack into the X register.
+     The PLX instruction does not affect the carry or overflow flags. It sets N if the bit 7 is on in index register X as a result of instructions, otherwise it is reset. If index register X is zero as a result of the PLA, then the Z flag is set, otherwise it is reset. The PLX instruction changes content of the index register X to the contents of the memory location at stack register plus 1 and also increments the stack register.
+
+PLY  Pull Index Register Y From Stack
+     This instruction adds 1 to the current value of the stack pointer and uses it to address the stack and loads the contents of the stack into the Y register.
+     The PLY instruction does not affect the carry or overflow flags. It sets N if the bit 7 is on in index register Y as a result of instructions, otherwise it is reset. If index register Y is zero as a result of the PLA, then the Z flag is set, otherwise it is reset. The PLY instruction changes content of the index register Y to the contents of the memory location at stack register plus 1 and also increments the stack register.
+
+STZ  Store Zero In Memory
+     Transfers the value 0 to addressed memory location.
+     No flags or registers in the microprocessor are affected by the store operation.
+
+## https://github.com/MEGA65/c65-specifications/blob/master/c65manualupdated.txt
+TRB  Test And Reset Memory Bits With Accumulator
+     This instruction tests and resets bits in memory, using the accumulator for both a test mask, and a reset mask. It performs a logical AND between the inverted bits of the accumulator and the bits in memory, storing the result back into memory.
+     The zero flag is set if all bits of the result of the AND are zero, otherwise it is reset.
+
+TSB  Test And Set Memory Bits With Accumulator
+     This instruction tests and sets bits in memory, using the accumulator for both a test mask, and a set mask. It performs a logical OR between the bits of the accumulator and the bits in memory, storing the result back into memory.
+     The zero flag is set if all bits of the result of the OR are zero, otherwise it is reset.
+
+[documentation-addmodes]
+## http://datasheets.chipdb.org/Western%20Design/W65C02S.pdf
+
+(a8)     Zero Page Indirect
+         With Zero Page Indirect addressing mode, the second byte of the instruction is a zero page indirect address that points to the low byte of a two byte effective address.
+
+(a16,X)  Absolute X-Indexed Indirect
+         With the Absolute Indexed Indirect addressing mode, the X Index Register is added to the second and third byes of the instruction to form an address to a pointer. This address mode is only used with the JMP instruction and the program Counter is loaded with the first and second bytes at this pointer.

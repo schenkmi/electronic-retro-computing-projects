@@ -1,0 +1,668 @@
+- C64 RAM Map (Microsoft/Commodore)
+-
+- The labels and descriptions have been taken from
+-    Microsoft's original BASIC for M6502 source
+- and
+-    The original C64 KERNAL source by Commodore (901227-03)
+-  https://github.com/mist64/cbmsrc
+-
+- Converted and formatted by Michael Steil <mist64@mac.com>
+-
+- Corrections (typos as well as content), translations etc.
+- welcome at: https://github.com/mist64/c64ref
+-
+------------------------------------------------------------
+-
+# This plain text file is formatted so that it can be automatically
+# parsed in order to create cross-references etc.
+# * Lines starting with "-" is top-level information. The first line
+#   is the title. Lines starting with "--" are separators.
+# * Lines starting with "#" are internal comments.
+# * Hex addresses start at column 0.
+# * Symbols start at column 13.
+# * The description starts at column 21.
+# * All lines of the description until the first blank line are
+#   combined into the heading.
+# * A '.' character at the end of a heading line represents a hard
+#   line break.
+# * The remaining text is in MarkDown format.
+# * All addresses are 4 digits and have a leading '$'.
+# The encoding is UTF-8.
+
+#
+# KERNAL
+#
+
+$0000        D6510   6510 data direction register
+$0001        R6510   6510 data register
+
+#
+# BASIC
+#
+
+$0003-$0004  ADRAY1  Store here the addr of the
+                     routine to turn the FAC into a
+                     two byte signed integer in [Y,A]
+
+$0005-$0006  ADRAY2  Store here the addr of the
+                     routine to convert [Y,A] to a floating
+                     point number in the FAC.
+
+$0007        CHARAC  A delimiting character.
+
+$0007        INTEGR  A one-byte integer from "QINT".
+
+$0008        ENDCHR  The other delimiting character.
+
+$0009        TRMPOS  Position of terminal carriage.
+
+$000B        COUNT   A general counter.
+
+$000C        DIMFLG
+
+                     In getting a pointer to a variable
+                     it is important to remember whether it
+                     is being done for "dim" or not.
+
+                     DIMFLG and VALTYP must be
+                     consecutive locations.
+
+$000D        VALTYP  The type indicator.
+
+                     0=numeric 1=string.
+
+$000E        INTFLG  Tells if integer.
+
+$000F        GARBFL  Whether to do garbage collection.
+
+$000F        DORES   Whether can or can't crunch res'd words.
+
+                     Turned on when "data"
+                     being scanned by crunch so unquoted
+                     strings won't be crunched.
+
+$0010        SUBFLG  Flag whether sub'd variable allowed.
+
+                     "FOR" and user-defined function
+                     pointer fetching turn
+                     this on before calling "PTRGET"
+                     so arrays won't be detected.
+                     "STKINI" and "PTRGET" clear it.
+                     Also disallows integers there.
+
+$0011        INPFLG  Flags whether we are doing "INPUT"
+                     or "READ".
+
+$0012        TANSGN  Used in determining sign of tangent.
+
+$0012        DOMASK  Mask in use by relation operations.
+
+$0013        CHANNL  Holds channel number.
+
+$0014-$0015  LINNUM  Location to store line number before BUF
+                     so that "BLTUC" can store it all away at once.
+
+                     A comma (preload or from ROM)
+                     used by input statement since the
+                     data pointer always starts on a
+                     comma or terminator.
+
+$0014-$0015  POKER   Set up location used by POKE.
+
+                     Temporary for input and read code
+
+$0016        TEMPPT  Pointer at first free temp descriptor.
+
+                     Initialized to point to TEMPST.
+
+$0017-$0018  LASTPT  Pointer to last-used string temporary.
+
+$0019-$0021  TEMPST  Storage for NUMTMP temp descriptors.
+
+$0022-$0025  INDEX   Indexes.
+
+$0022-$0023  INDEX1
+
+$0024-$0025  INDEX2
+
+$0026        RESHO   Result of multiplier and divider.
+
+$0027        RESMOH  One more byte.
+
+$0028        RESMO
+
+$0028        ADDEND  Temporary used by "UMULT".
+
+$0029        RESLO
+
+$002B-$002C  TXTTAB  Pointer to beginning of text.
+
+                     Doesn't change after being
+                     setup by "INIT".
+
+$002D-$002E  VARTAB  Pointer to start of simple
+                     variable space.
+
+                     Updated whenever the size of the
+                     program changes, set to [TXTTAB]
+                     by "SCRATCH" ("NEW").
+
+$002F-$0030  ARYTAB  Pointer to beginning of array
+                     table.
+
+                     Incremented by 6 whenever
+                     a new simple variable is found, and
+                     set to [VARTAB] by "CLEARC".
+
+$0031-$0032  STREND  End of storage in use.
+
+                     Increased whenever a new array
+                     or simple variable is encountered.
+                     set to [VARTAB] by "CLEARC".
+
+$0033-$0034  FRETOP  Top of string free space.
+
+$0035-$0036  FRESPC  Pointer to new string.
+
+$0037-$0038  MEMSIZ  Highest location in memory.
+
+$0039-$003A  CURLIN  Current line #.
+
+                     Set to 0,255 for direct statements.
+
+$003B-$003C  OLDLIN  Old line number
+
+                     Set up by ^C,"STOP"
+                     or "END" in a program.
+
+$003D-$003E  OLDTXT  Old text pointer.
+
+                     Points at statement to be exec'd next.
+
+$003F-$0040  DATLIN  Data line # -- remember for errors.
+
+$0041-$0042  DATPTR  Pointer to data.
+
+                     Initialized to point
+                     at the zero in front of [TXTTAB]
+                     by "RESTORE" which is called by "CLEARC".
+                     updated by execution of a "READ".
+
+$0043-$0044  INPPTR  This remembers where input is coming from.
+
+$0045-$0046  VARNAM  Variable's name is stored here.
+
+$0047-$0048  VARPNT  Pointer to variable in memory.
+
+$0047        FDECPT  Pointer into power of tens of "FOUT".
+
+$0049-$004A  FORPNT  A variable's pointer for "FOR" loops
+                     and "LET" statements.
+
+$0049        LSTPNT  Pntr to list string.
+
+$0049        ANDMSK  The mask used by WAIT for ANDing.
+
+$004A        EORMSK  The mask for EORing in wait.
+
+$004B-$004C  OPPTR   Pointer to current op's entry in "OPTAB".
+
+$004B        VARTXT  Pointer into list of variables.
+
+$004D        OPMASK  Mask created by current operator.
+
+$004E-$0052  TEMPF3  A third FAC temporary (4 bytes).
+
+$004E-$004F  DEFPNT  Pointer used in function definition.
+
+$004E        GRBPNT  Another used in garbage collection.
+
+$0050-$0052  DSCPNT  Pointer to a string descriptor.
+
+$0053        FOUR6   Variable constant used by garb collect.
+
+$0054-$0056  JMPER
+
+$0055        SIZE
+
+$0056        OLDOV   The old overflow.
+
+$0057-$005B  TEMPF1
+
+$0058        HIGHDS  Destination of highest element in BLT.
+
+$005A        HIGHTR  Source of highest element to move.
+
+$005C-$0060  TEMPF2
+
+$005D        LOWDS   Location of last byte transferred into.
+
+$005F        LOWTR   Last thing to move in BLT.
+
+$0058        ARYPNT  A pointer used in array building.
+
+$005F        GRBTOP  A pointer used in garbage collection.
+
+$005D        DECCNT  Number of places before decimal point.
+
+$005E        TENEXP  Has a DPT been input?
+
+$005F        DPTFLG  Base ten exponent.
+
+$0060        EXPSGN  Sign of base ten exponent.
+
+$0061-$0066  FAC     The floating accumulator
+
+$0061        FACEXP
+
+$0061        DSCTMP  This is where temp descs are built.
+
+$0062        FACHO   Most significant byte of mantissa.
+
+$0063        FACMOH  One more.
+
+$0064        FACMO   Middle order of mantissa.
+
+$0064        INDICE  Indice is set up here by "QINT".
+
+$0065        FACLO   Least sig byte of mantissa.
+
+$0066        FACSGN  Sign of FAC (0 or -1) when unpacked.
+
+$0067        SGNFLG  Sign of FAC is preserved bere by "FIN".
+
+$0067        DEGREE  A count used by polynomials.
+
+$0068        BITS    Something for "SHIFTR" to use.
+
+$0069-$006E          The floating argument (unpacked)
+
+$0069        ARGEXP
+
+$006A        ARGHO
+
+$006B        ARGMOH
+
+$006C        ARGMO
+
+$006D        ARGLO
+
+$006E        ARGSGN
+
+$006F        ARISGN  A sign reflecting the result.
+
+$006F-$0070  STRNG1  Pointer to a string or descriptor.
+
+$0070        FACOV   Overflow byte of the FAC.
+
+$0071-$0072  FBUFPT  Pointer into FBUFFR used by FOUT.
+
+$0071-$0072  BUFPTR  Pointer to buf used by "CRUNCH".
+
+$0071-$0072  STRNG2  Pointer to string or desc.
+
+$0071-$0072  POLYPT  Pointer into polynomial coefficients.
+
+$0071-$0072  CURTOL  Absolute linear index is formed here.
+
+$0073-$008A  CHRGET  RAM code.
+
+                     This code gets changed throughout execution.
+                     It is made to be fast this way.
+                     Also, [X] and [Y] are not disturbed.
+                     
+                     "CHRGET" using [TXTPTR] as the current text pntr,
+                     fetches a new character into ACCA after incrementing [TXTPTR]
+                     and sets condition codes according to what's in ACCA.
+
+                     * not C = numeric ("0" thru "9")
+                     * Z = ":" or end-of-line (a null)
+
+                     [ACCA] = new char.
+                     
+                     [TXTPTR]=[TXTPTR]+1
+
+                     The following exists in ROM if ROM exists and is loaded
+                     down here by init. Otherwise it is just loaded into this
+                     RAM like all the rest of RAM is loaded.
+
+$008B-$008F  RNDX    
+
+#
+# KERNAL
+#
+
+$0090        STATUS  I/O operation status byte
+
+$0091        STKEY   STOP key flag
+
+$0092        SVXT    Cassette: temp used to adjust software servo
+
+$0093        VERCK   Cassette: verify or load flag (Z - loading)
+
+$0094        C3P0    IEEE buffered char flag
+
+$0095        BSOUR   Char buffer for IEEE
+
+$0096        SYNO    Cassette: flags if we have block SYNC (16 zero dipoles)
+
+$0097        XSAV    Temp for BASIN
+
+$0098        LDTND   Index to logical file
+
+$0099        DFLTN   Default input device #
+
+$009A        DFLTO   Default output device #
+
+$009B        PRTY    Cassette: holds current calculated parity bit
+
+$009C        DPSW    Cassette: if NZ then expecting LL/L combination that ends a byte
+
+$009D        MSGFLG  OS message flag
+
+$009E        PTR1    Cassette: count of read locations in error (pointer into bad, max 61)
+
+$009E        T1      Temporary 1
+
+$009F        PTR2    Cassette: count of re-read locations (pointer into bad, during re-read)
+
+$009F        T2      Temporary 2
+
+$00A0-$00A2  TIME    24 hour clock in 1/60th seconds
+
+$00A3        R2D2    Serial bus usage
+
+$00A3        PCNTR   Cassette: counts down from 8-0 for data then to ff for parity
+
+$00A4        BSOUR1  Temp used by serial routine
+
+$00A4        FIRT    Cassette: used to indicate which half of dipole we're in
+
+$00A5        COUNT   Temp used by serial routine
+
+$00A5        CNTDN   Cassette sync countdown
+
+$00A6        BUFPT   Cassette buffer pointer
+
+$00A7        INBIT   RS-232 rcvr input bit storage
+
+$00A7        SHCNL   Cassette: holds FSBLK, used to direct routines, because of exit case
+
+$00A8        BITCI   RS-232 rcvr bit count in
+
+$00A8        RER     Cassette: flags errors (if Z then no error)
+
+$00A9        RINONE  RS-232 rcvr flag for start bit check
+
+$00A9        REZ     Cassette: counts zeros (if Z then correct # of dipoles)
+
+$00AA        RIDATA  RS-232 rcvr byte buffer
+
+$00AA        RDFLG   Cassette: holds function mode
+
+                     MI - waiting for block SYNC
+                     VS - in data block reading data
+                     NE - waiting for byte SYNC
+
+$00AB        RIPRTY  RS-232 rcvr parity storage
+
+$00AB        SHCNH   Cassette: short cnt; left over from debugging
+
+$00AC        SAL     Cassette: indirect to data storage area
+
+$00AD        SAH
+
+$00AE        EAL
+
+$00AF        EAH
+
+$00B0        CMP0    Cassette: software servo (+/- adjust to time calcs)
+
+$00B1        TEMP    Cassette: used to hold dipole time during type calculations
+
+$00B2-$00B3  TAPE1   Address of tape buffer #1y.
+
+$00B4        BITTS   RS-232 trns bit count
+
+$00B4        SNSW1   Cassette: flags if we have byte SYNC (a longlong)
+
+$00B5        NXTBIT  RS-232 trns next bit to be sent
+
+$00B5        DIFF    Cassette: used to preserve SYNO (outside of bit routines)
+
+$00B6        RODATA  RS-232 trns byte buffer
+
+$00B6        PRP     Cassette: has combined error values from bit routines
+
+$00B7        FNLEN   Length current file n str
+
+$00B8        LA      Current file logical addr
+
+$00B9        SA      Current file 2nd addr
+
+$00BA        FA      Current file primary addr
+
+$00BB-$00BC  FNADR   Addr current file name str
+
+$00BD        ROPRTY  RS-232 trns parity buffer
+
+$00BD        OCHAR
+
+$00BE        FSBLK   Cassette: indicate which block we're looking at (0 to exit)
+
+$00BF        MYCH    Cassette: holds input byte being built
+
+$00C0        CAS1    Cassette manual/controlled switch
+
+$00C1        TMP0
+
+$00C1        STAL
+
+$00C2        STAH
+
+$00C3-$00C4  MEMUSS  Cassette load temps (2 bytes)
+
+$00C3-$00C4  TMP2
+
+$00C5        LSTX    Key scan index
+
+$00C6        NDX     Index to keyboard q
+
+$00C7        RVS     RVS field on flag
+
+$00C8        INDX
+
+$00C9        LSXP    X pos at start
+
+$00CA        LSTP
+
+$00CB        SFDX    SHIFT mode on print
+
+$00CC        BLNSW   Cursor blink enab
+
+$00CD        BLNCT   Count to toggle cur
+
+$00CE        GDBLN   Char before cursor
+
+$00CF        BLNON   On/off blink flag
+
+$00D0        CRSW    INPUT vs GET flag
+
+$00D1-$00D2  PNT     Pointer to row
+
+$00D3        PNTR    Pointer to column
+
+$00D4        QTSW    Quote switch
+
+$00D5        LNMX    40/80 max positon
+
+$00D6        TBLX
+
+$00D7        DATA    Cassette: holds most recent dipole bit value
+
+$00D8        INSRT   Insert mode flag
+
+$00D9-$00F2  LDTB1   Line flags+endspace
+
+$00F3-$00F4  USER    Screen editor color IP
+
+$00F5-$00F6  KEYTAB  Keyscan table indirect
+
+$00F7-$00F8  RIBUF   RS-232 input buffer pointer
+
+$00F9-$00FA  ROBUF   RS-232 output buffer pointer
+
+$00FB-$00FE  FREKZP  Free KERNAL zero page 9/24/80
+
+$00FF-$010A  BASZPT  Location ($00FF) used by BASIC
+
+$0100-$013E  BAD     Cassette: storage space for bad read locations (bottom of stack)
+
+#
+# BASIC
+#
+
+$0200-$0258  BUF     BASIC/MONITOR buffer
+
+                     Type-in stored here.
+                     Direct statements execute out of
+                     here. Remember "INPUT" smashes buf.
+                     Must be on page zero
+                     or assignment of string
+                     values in direct statements won't copy
+                     into string space -- which it must.
+                     N.B.: Two nonzero bytes must precede "BUFLNM".
+
+#
+# KERNAL
+#
+
+$0259-$0262  LAT     Logical file numbers
+
+$0263-$026C  FAT     Primary device numbers
+
+$026D-$0276  SAT     Secondary addresses
+
+$0277-$0280  KEYD    IRQ keyboard buffer
+
+$0281-$0282  MEMSTR  Start of memory
+
+$0283-$0284  MEMSIZ  Top of memory
+
+$0285        TIMOUT  IEEE timeout flag
+
+$0286        COLOR   Active color nybble
+
+$0287        GDCOL   Original color before cursor
+
+$0288        HIBASE  Base location of screen (top)
+
+$0289        XMAX
+
+$028A        RPTFLG  Key repeat flag
+
+$028B        KOUNT
+
+$028C        DELAY
+
+$028D        SHFLAG  SHIFT flag byte
+
+$028E        LSTSHF  Last SHIFT pattern
+
+$028F-$0290  KEYLOG  Indirect for keyboard table setup
+
+$0291        MODE    0-PET mode, 1-cattacanna
+
+$0292        AUTODN  Auto scroll down flag(=0 on,<>0 off)
+
+$0293        M51CTR  6551 control register
+
+$0294        M51CDR  6551 command register
+
+$0295-$0296  M51AJB  Non standard (bittime/2-100)
+
+$0297        RSSTAT  RS-232 status register
+
+$0298        BITNUM  Number of bits to send (fast response)
+
+$0299-$029A  BAUDOF  Baud rate full bit time (created by open)
+
+$029B        RIDBE   Input buffer index to end
+
+$029C        RIDBS   Input buffer pointer to start
+
+$029D        RODBS   Output buffer index to start
+
+$029E        RODBE   Output buffer index to end
+
+$029F-$02A0  IRQTMP  Holds irq during tape ops
+
+$02A1        ENABL   RS-232 enables (replaces ier)
+
+$02A2        CASTON  TOD sense during cassettes
+
+$02A3        KIKA26  Cassette: holds old D1ICR after clear on read
+
+$02A4        STUPID  Cassette: hold indicator (NZ - no T1IRQ yet) for T1IRQ
+
+$02A5        LINTMP  Temporary for line index
+
+$02A6        PALNTS  PAL vs NTSC flag 0=NTSC 1=PAL
+
+#
+# BASIC
+#
+
+$0300-$0301  IERROR  indirect ERROR (output error in .X)
+$0302-$0303  IMAIN   indirect MAIN (system direct loop)
+$0304-$0305  ICRNCH  indirect CRUNCH (tokenization routine)
+$0306-$0307  IQPLOP  indirect LIST (char list)
+$0308-$0309  IGONE   indirect GONE (char dispatch)
+$030A-$030B  IEVAL   indirect EVAL (symbol evaluation)
+$030C        SAREG   .A reg
+$030D        SXREG   .X reg
+$030E        SYREG   .Y reg
+$030F        SPREG   .P reg
+$0310-$0312  USRPOK  user function dispatch
+
+#
+# KERNAL
+#
+
+$0314-$0315  CINV    IRQ RAM vector
+
+$0316-$0317  CBINV   BRK instr RAM vector
+
+$0318-$0319  NMINV   NMI RAM vector
+
+$031A-$032D          Indirects for code
+
+                     Conforms to KERNAL spec 8/19/80
+
+$031A-$031B  IOPEN   
+
+$031C-$031D  ICLOSE  
+
+$031E-$031F  ICHKIN
+
+$0320-$0321  ICKOUT
+
+$0322-$0323  ICLRCH
+
+$0324-$0325  IBASIN
+
+$0326-$0327  IBSOUT
+
+$0328-$0329  ISTOP
+
+$032A-$032B  IGETIN
+
+$032C-$032D  ICLALL
+
+$032E-$032F  USRCMD
+
+$0330-$0331  ILOAD
+
+$0332-$0333  ISAVE   savesp
+
+$033C-$03FB  TBUFFR  cassette data b

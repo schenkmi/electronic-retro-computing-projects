@@ -1,0 +1,140 @@
+
+/* Colors */
+
+:root {
+    --main-background: #e0f0ff;
+    --main-color: #004080;
+    --main-background-recessed: #d2dff4;
+
+    --highlight-background: #006ad5;
+
+    --border-color: #0060a0;
+}
+
+
+/**/
+
+body {
+    background: var(--main-background);
+    color: var(--main-color);
+    font-family: Helvetica;
+    margin: 0px;
+}
+
+a {
+    color: var(--border-color);
+}
+
+header {
+    background: var(--main-background-recessed);
+    border-bottom: solid 1px #bdc8db;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.6rem;
+}
+
+nav {
+    margin-bottom: 1.3rem;
+}
+
+#headline, #byline, footer > h2, footer > h3 {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+main > div, footer > div {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
+
+}
+
+footer {
+    background: var(--main-background-recessed);
+    border-top: solid 1px #bdc8db;
+    margin-top: 1.6rem;
+    padding-top: 0.3rem;
+    padding-bottom: 1.3rem;
+}
+
+
+h1 {
+	font-size: large;
+}
+
+/* Navigation */
+
+.topnav {
+    color: black;
+    background-color: white;
+    overflow: hidden;
+    padding: 0px;
+    border-bottom: solid 2px var(--main-color);
+}
+
+.topnav a, .topnav div {
+    float: left;
+    text-align: center;
+    padding: 8px 10px;
+    margin: 0px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.topnav div {
+    font-weight: bold;
+}
+
+.topnav a {
+    color: white;
+    background-color: #333;
+    border-right:solid 1px var(--main-background);
+}
+
+.topnav a:hover {
+    background-color: #abb;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: var(--highlight-background);
+    color: white;
+}
+
+.topnav a.home, .topnav a.home:hover {
+    color: #666;
+    background-color: white;
+    font-weight:bolder;
+    border:none;
+    display: block;
+    float:right;
+    margin-right: 80px;
+}
+
+
+/* Tables */
+
+table {
+    border-collapse: collapse;
+    border: solid 1px var(--border-color);
+    color: black;
+}
+
+tr, td, th {
+    margin: 0px;
+    text-align:left;
+    vertical-align: top;
+}
+
+/* octocat */
+/* # http://tholman.com/github-corners/ */
+
+.github-corner:hover .octo-arm {animation:octocat-wave 560ms ease-in-out}
+
+@keyframes octocat-wave{
+    0%,100%{transform:rotate(0)}
+    20%,60%{transform:rotate(-25deg)}
+    40%,80%{transform:rotate(10deg)}}
+
+@media (max-width:500px){
+    .github_corner:hover .octo-arm{animation:none}
+    .github_corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}

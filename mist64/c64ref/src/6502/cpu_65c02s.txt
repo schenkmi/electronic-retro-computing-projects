@@ -1,0 +1,37 @@
+## This is a description file for a 6502-like CPU.
+## See https://github.com/mist64/c64ref for details.
+
+[info]
+manufacturer WDC
+name         65C02S
+year         1986 ## or earlier; http://forum.6502.org/viewtopic.php?p=38895
+id           65c02s
+basedon      r65c02
+description  This is the later version of Western Design Center's 65C02, which supports the Rockwell extensions and adds two power saving opcodes borrowed from the 65c816.
+
+[mnemos]
+STP   Stop the Clock
+WAI   Wait for Interrupt
+
+[operations]
+STP  ctrl   --------  Stop the Clock
+WAI  ctrl   --------  Wait for Interrupt
+
+[opcodes]
+CB  WAI
+DB  STP
+
+[timing]
+CB  3
+DB  3
+
+[documentation-mnemos]
+
+STP  Stop the Clock
+     The processor halts until a hardware reset is applied. Power-supply current drops to nearly zero.
+
+WAI  Wait for Interrupt
+     The processor pauses at the current location until the next interrupt occurs. This allows for zero latency interrupt response.
+
+
+
