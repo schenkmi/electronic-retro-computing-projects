@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name 6522)(type Legacy)(uri $KIPRJMOD/../common/library/6522.lib)(options "")(descr ""))
+  (lib (name speed_dos)(type Legacy)(uri $KIPRJMOD/../common/library/speed_dos.lib)(options "")(descr ""))
+)
