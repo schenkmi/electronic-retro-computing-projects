@@ -1,0 +1,24 @@
+build.*
+acsi2stm-*
+acsi2stm.log
+*.tos
+*.prg
+*.TOS
+*.PRG
+DESKTOP.INF
+*.exe
+*.bin
+*.BIN
+pcb/MegaSTE Internal/fp-info-cache
+*.gbl
+*.gbs
+*.gbp
+*.gbo
+*.gm1
+*.gtl
+*.gts
+*.gtp
+*.gto
+*.gbr
+*.drl
+pcb/MegaSTE Internal/ACSI2STM MegaSTE-backups/*
